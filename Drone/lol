@@ -1,0 +1,10 @@
+wlan0     IEEE 802.11  ESSID:"AndroidAAPA"  
+          Mode:Managed  Frequency:2.462 GHz  Access Point: 16:E1:3E:55:7F:09   
+          Bit Rate=1 Mb/s   Tx-Power=0 dBm   
+          Retry short limit:7   RTS thr:off   Fragment thr:off
+          Encryption key:off
+          Power Management:on
+          Link Quality=26/70  Signal level=-84 dBm  
+          Rx invalid nwid:0  Rx invalid crypt:0  Rx invalid frag:0
+          Tx excessive retries:408  Invalid misc:4   Missed beacon:0
+
