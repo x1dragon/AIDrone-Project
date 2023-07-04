@@ -14,6 +14,7 @@ from urllib import request    # Allows me to send a web request to get the ip
 from time import sleep  # Allows me to limit the speed, reducing CPU demand
 
 # ============ Functions ============
+connected = False 
 
 def info(content, bad=False):
     '''
@@ -43,6 +44,8 @@ def scan():  # Function 1
         content = content.split('\n')
         
         # 2. Determine if there's an open spot
+        global connected
+
         for content in content:
             try:
                 bssid = content.split(' ')[8]  # At [8] lies the BSSID
@@ -58,8 +61,10 @@ def scan():  # Function 1
                 if connect(bssid) and internetAccess():
                     ip = harvestIP()
                     if not ip == 'err':  # If the error code was not returned
-                        saveInfo(ip)  # Write the info to the file
-                        continue
+                        saveInfo(ip) 
+                        connected = True
+                         # Write the info to the file
+                        break
                         
                     else:  # If for some reason an error popped up
                         addToBlacklist(bssid)
@@ -197,7 +202,7 @@ if not usertype() == 0:  # If the user is not root
 
 # 2. Start hunting loop
 ct = 0
-while True:
+while not connected: # Keep looping until connected is set to True 
     scan()
     info('Current iteration: %s' % str(ct))
     info('Waiting for %s seconds ...' % str(wait))
